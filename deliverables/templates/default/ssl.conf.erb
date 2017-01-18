@@ -1,0 +1,12 @@
+template "#{file}" do
+  source "ssl.conf.erb"
+  mode 0644
+  owner "root"
+  roup "root"
+  variables(
+             :sslcertificate => "#{node['apache']['sslpath']}/apache.crt",
+             :sslkey => "#{node['apache']['sslpath']}/apache.key",
+             :sslcacertificate => "#{node['apache']['sslpath']}/ca-bundle.crt",
+             :servername => "#{node['apache']['servername']}"
+  )
+end
